@@ -1,0 +1,115 @@
+:root {
+	font-size: 16px;
+	font-family: 'Open Sans';
+}
+
+#mainbox{
+    background-color: lightgray;
+	margin-top: 1rem;
+	margin-left: 20rem;
+	margin-right: 20rem;
+	border: 1px black solid;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+.button{
+    background-color:#205dce ;
+    border: none;
+    color: white;
+    padding: 1rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 0.5rem 3rem;
+    cursor: pointer;
+    height: 60px;
+    width: 120px;
+    
+}
+
+#buttons{
+    background-color: lightgray;
+    margin-left: 30rem;
+    margin-right: 30rem;
+    margin-bottom: 2rem;
+    padding: 10px;
+    text-align: center;
+}
+#sudoku{
+    margin-left: 45rem;
+    margin-top: 5rem;
+}
+
+#loesbar{
+    margin-left:16rem;
+}
+
+#loesbarAnzeige{
+    height:50px;
+    width:50px;
+    margin-left:1rem;
+}
+
+#zeit{
+    margin-left: 44rem;
+}
+#zeitAnzeige{
+    height:50px;
+    width:50px;
+    margin-left: 1rem;
+}
+
+#outputs{
+   display:flex;
+}
+
+table { 
+    margin: 10px;
+}
+
+tr:first-child td {
+	border-top-color: black;
+}
+
+tr:nth-child(3n) td {
+	border-bottom-color: black;
+}
+
+td {
+	border: 1px solid lightgrey;
+	height: 40px;
+	width: 40px;
+}
+
+td:first-child {
+	border-left-color: black;
+}
+
+td:nth-child(3n) {
+	border-right-color: black;
+}
+
+input {
+	padding: 0;
+	text-align: center;
+	border: 0;
+	height: 40px;
+	width: 40px;
+	text-align: center;
+}
+
+input:hover {
+	background: lightblue;
+}
+
+/* Keine Pfeile beim input*/
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+  
+  /* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
