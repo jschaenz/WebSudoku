@@ -42,7 +42,7 @@ function solve_button() {
     }
 
     let zeit = solvedSudoku.time;
-    document.getElementById("sekunden").innerText = zeit + " Sekunden";
+    document.getElementById("sekunden").innerText = "Gelöst in: " + zeit + " Sekunden";
 }
 
 
@@ -98,20 +98,23 @@ function GetCellValues() {
 
 function unloesbar() {
     let box = document.getElementById("loesbarAnzeige");
-    box.style.backgroundColor="red";
+    box.style.backgroundColor="#EB574B";
+    document.getElementById("loesbar").innerText = "Nicht Lösbar!";
     return null;
 }
 
 function loesbar(){
     let box = document.getElementById("loesbarAnzeige");
-    box.style.backgroundColor="green";
+    box.style.backgroundColor="#00A388";
+    document.getElementById("loesbar").innerText = "Lösbar!";
     return null;
 }
 
 function removeloesbar(){
     let box = document.getElementById("loesbarAnzeige");
-    box.style.backgroundColor="lightgray";
-    document.getElementById("sekunden").innerText = ""; 
+    box.style.backgroundColor="#40B5C7";
+    document.getElementById("sekunden").innerText = "Gelöst in:";
+    document.getElementById("loesbar").innerText = "Lösbarkeit";
     let table = document.getElementById('sudoku'); //entfernt readonly tag
     for (let r = 0, n = table.rows.length; r < n; r++) {
         for (let c = 0, m = table.rows[r].cells.length; c < m; c++) {

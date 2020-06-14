@@ -15,142 +15,148 @@
 </head>
 
 <body>
-    <div id="mainbox">
-        <div id="buttons">
-            <button class="button" onclick="generate_button()">Generate</button>
-            <button class="button" onclick="solve_button()">Solve</button>
-            <button class="button" onclick="check_button()">Check</button>
-            <button class="button" onclick="clearfeld()">Clear</button>
-        </div>
-        
-        <div id="outputs">
-            <div id="zeit">
-                Gelöst in:
-                <div id="zeitAnzeige">
-                    <p id="sekunden"></p>
-                </div>
-            </div>
-
-            <div id="loesbar">
-                Lösbarkeit
-                <div id="loesbarAnzeige">
-                </div>
-            </div>
-        </div>
-
-        <table id="sudoku">
-            <tbody>
-                <tr>
-                    <!-- Reihe 1 -->
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                </tr>
-                <tr>
-                    <!-- Reihe 2 -->
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                </tr>
-                <tr>
-                    <!-- Reihe 3 -->
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                </tr>
-                <tr>
-                    <!-- Reihe 4 -->
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                </tr>
-                <tr>
-                    <!-- Reihe 5 -->
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                </tr>
-                <tr>
-                    <!-- Reihe 6 -->
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                </tr>
-                <tr>
-                    <!-- Reihe 7 -->
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                </tr>
-                <tr>
-                    <!-- Reihe 8 -->
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                </tr>
-                <tr>
-                    <!-- Reihe 9 -->
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                    <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
-                </tr>
-            </tbody>
-        </table>
+  <header>
+    <img src="./img/logo.svg" alt="Solve my Sudoku Logo">
+  </header>
+  <div class="half">
+    <div class="btn-row">
+      <button onclick="generate_button()">Generate</button>
+      <button onclick="solve_button()"style="border-right: none;">Solve</button>
     </div>
+
+    <div class="btn-row">
+      <button onclick="check_button()" style="border-top: none;">Check</button>
+      <button onclick="clearfeld()" style="border-top: none;border-right: none;">Clear</button>
+    </div>
+
+
+    <div class="btn-row">
+      <div class="box" style="border-bottom: none;border-top:none;">
+        <p id="sekunden">Gelöst in:</p>
+      </div>
+    </div>
+    <div class="btn-row">
+      <div class="box" id="loesbarAnzeige">
+        <p id="loesbar">Lösbarkeit</p>
+      </div>
+    </div>
+  </div>
+
+<div class="half">
+  <table id="sudoku">
+      <tbody>
+          <tr>
+              <!-- Reihe 1 -->
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button() " class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+          </tr>
+          <tr>
+              <!-- Reihe 2 -->
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+          </tr>
+          <tr>
+              <!-- Reihe 3 -->
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+          </tr>
+          <tr>
+              <!-- Reihe 4 -->
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+          </tr>
+          <tr>
+              <!-- Reihe 5 -->
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+          </tr>
+          <tr>
+              <!-- Reihe 6 -->
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+          </tr>
+          <tr>
+              <!-- Reihe 7 -->
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+          </tr>
+          <tr>
+              <!-- Reihe 8 -->
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+          </tr>
+          <tr>
+              <!-- Reihe 9 -->
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()" class= "highlight"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+              <td><input type="number" min="1" max="9" onchange="check_button()"/></td>
+          </tr>
+      </tbody>
+  </table>
+</div>
+
 
     <footer>
 
