@@ -1,3 +1,3 @@
-donk school project
+School project
 
-backend isnt mine TriHard 7
+Javascript code done by me, design done by David.
