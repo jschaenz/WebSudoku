@@ -19,9 +19,9 @@ public class Sudoku {
 	}
 
 	public String toJSON() {
-		return "{\"sudokuJSON\":["
-				+ Arrays.deepToString(this.feld).replace("], ", "],").replace("[[", "[").replace("]]", "]").replace('"',' ').replace("[","[ ").replace("]"," ]")
-				+ "],\"time\": " + this.time % .1f + ",\"status\": " + this.status + "}";
+		return "{\"sudokuJSON\":"
+				+ Arrays.deepToString(this.feld).replace("], ", "],").replace('"',' ').replace("[","[ ").replace("]"," ]")
+				+ ",\"time\": " + this.time+ ",\"status\": " + this.status + "}";
 	}
 
 	public boolean createFromJSON(String sudokuJSON) throws MalformedJSONException {
@@ -41,8 +41,16 @@ public class Sudoku {
 					cachedNumericValue = Character.getNumericValue(cachedChar);
 				}
 
-				else if (counter % 9 == 8) { // 8 17 26 35 44 53 62 71 80, jede 9. Zahl um -1 versetzt, da noch ] dabei ist				
+				else if (counter == 80) { // 80, ist länger als der Rest			
 					if (splitSudoku[counter].length() > 6) {
+						return false;
+					}
+					cachedChar = splitSudoku[counter].charAt(1);
+					cachedNumericValue = Character.getNumericValue(cachedChar);
+				}
+
+				else if (counter % 9 == 8) { // 8 17 26 35 44 53 62 71, jede 9. Zahl um -1 versetzt, da noch ] dabei ist				
+					if (splitSudoku[counter].length() > 4) {
 						return false;
 					}
 					cachedChar = splitSudoku[counter].charAt(1);
@@ -90,7 +98,7 @@ public class Sudoku {
 				{ 5, 1, 6, 0, 4, 0, 0, 0, 8 },
 				{ 0, 2, 0, 0, 0, 9, 1, 0, 0 }, 
 				{ 7, 5, 4, 2, 0, 1, 3, 0, 6 }, 
-				{ 1, 0, 0, 7, 0, 5, 0, 0, 0 } };
+				{ 1, 0, 0, 7, 0, 5, 0, 0, 0 } }; 
 
 		int[][] PredefinedSudoku2 = {
 				{ 0, 2, 0, 0, 0, 1, 9, 4, 8 }, 
@@ -104,15 +112,15 @@ public class Sudoku {
 				{ 0, 5, 0, 9, 0, 0, 0, 0, 7 } };
 
 		int[][] PredefinedSudoku3 = { 
-				{ 0, 0, 2, 0, 0, 0, 1, 0, 7 }, 
-				{ 7, 4, 5, 2, 0, 0, 0, 0, 0 },
-				{ 0, 0, 6, 0, 0, 5, 0, 0, 0 },
-				{ 0, 5, 7, 6, 0, 4, 0, 3, 1 }, 
-				{ 9, 0, 4, 6, 0, 3, 6, 0, 0 }, 
-				{ 6, 1, 0, 0, 0, 0, 0, 0, 9 },
-				{ 4, 0, 0, 0, 0, 0, 0, 6, 3 }, 
-				{ 0, 0, 0, 0, 0, 0, 9, 0, 8 }, 
-				{ 0, 7, 8, 0, 0, 0, 0, 0, 0 } };
+				{ 0, 2, 0, 0, 0, 0, 0, 0, 0 }, 
+				{ 0, 0, 0, 6, 0, 0, 0, 0, 3 },
+				{ 0, 7, 4, 0, 8, 0, 0, 0, 0 },
+				{ 0, 0, 0, 0, 0, 3, 0, 0, 2 }, 
+				{ 0, 8, 0, 0, 4, 0, 0, 1, 0 }, 
+				{ 6, 0, 0, 5, 0, 0, 0, 0, 0 },
+				{ 0, 0, 0, 0, 1, 0, 7, 8, 0 }, 
+				{ 5, 0, 0, 0, 0, 9, 0, 0, 0 }, 
+				{ 0, 0, 0, 0, 0, 0, 0, 4, 0 } };
 
 		PredefinedSudokus.put(1, PredefinedSudoku1);
 		PredefinedSudokus.put(2, PredefinedSudoku2);
@@ -121,11 +129,16 @@ public class Sudoku {
 		this.feld = PredefinedSudokus.get(n);
 	}
 
-	private boolean checkrules(int y, int x, int value) {
+	private boolean checkIfAllowed(int y, int x, int value) {
 		// Prüft ob Zahl value an die Stelle eingefügt werden darf
 		int xrange = 0;
 		int yrange = 0;
-
+		
+		//Prüfen ob Zahl zwischen 1 und 9
+		if(value > 9 || value < 1) {
+			return false;
+		}
+		
 		// Prüfen ob Zahl bereits in Zeile
 		for (int i = 0; i < 9; i++) {
 			if (feld[y][i] == value) {
@@ -172,74 +185,90 @@ public class Sudoku {
 
 	}
 
-	/**
-	 * Check if the Sudoko is solved
-	 * 
-	 * @return True if the Sudoku is solved; False if not
-	 */
-	public boolean checkIfSolved() { // ->solve Funktion
 
+	private boolean checkIfValid() {
+		/* Prüft alle Felder mit einer eingtragenen Zahl, ob diese überhaupt gültig ist.
+		*/
+		int tmp;
+		for(int y=0; y<9; y++){
+			for(int x=0; x<9; x++){
+				if(feld[y][x]!=0) {
+					tmp = feld[y][x];
+					feld[y][x]=0;
+					if(checkIfAllowed(y,x,tmp)== false) {
+						feld[y][x] = tmp;
+						return false;
+					}
+					feld[y][x] = tmp;
+					
+				}
+			}	
+		}
+		return true;
+	}
+
+	public boolean checkIfSolved() {
 		for (int i = 0; i < 9; i++) { // i ist Zeile
 			for (int j = 0; j < 9; j++) { // j ist Spalte
 
 				int value = feld[i][j];
-				feld[i][j] = 0; // Feld wird temporär auf 0 gesetzt, damit checkrules funktioniert
-				if (checkrules(i, j, value) == false) {
+				feld[i][j] = 0; // Feld wird temporÃ¤r auf 0 gesetzt, damit checkrules funktioniert
+				if (checkIfAllowed(i, j, value) == false) {
 					feld[i][j] = value; // Feld wird wieder auf seinen alten Wert gesetzt
 					return false;
 				}
-				feld[i][j] = value;
+				feld[i][j] = value; // Feld wird wieder auf seinen alten Wert gesetzt
 			}
 		}
+		this.status = 200; // "gelÃster Status"
 		return true;
 	}
 
 	public boolean solveSudoku() {
 		long start = System.nanoTime();
-		boolean solved = solve();
+		boolean solved = solve(true);
 		long end = System.nanoTime();
 		long total = (end - start) / 1000000;
 		this.time = (double) total;
-		if (solved) {
-			this.status = 200;
-		}
 		return solved;
 	}
 
-	/**
-	 * Solves the Sudoku using Backtracking
-	 * 
-	 * @return if successfull true, else false
-	 */
-	private boolean solve() {
-		// Lösen des sudokus
-		// Iterieren über alle Felder und prüfen ob eines davon eine 0 enthält
 
-		for (int y = 0; y < 9; y++) {
-			for (int x = 0; x < 9; x++) {
-				if (feld[y][x] == 0) {
+	private boolean solve(boolean start){
+		//Lösen des sudokus
+		//Iterieren über alle Felder und prüfen ob eines davon eine 0 enthält
+		
+		if(start) {
+			if(checkIfValid() == false) {return false;}
+		}
+		
+		for(int y=0; y<9; y++){
+			for(int x=0; x<9; x++){
+		
+				if(feld[y][x]==0) { 
 					// Zahlen von 0-9 durchgehen und wenn Zahl erlaubt ist diese ins Feld setzten
-					for (int n = 1; n <= 9; n++) {
-						if (checkrules(y, x, n)) {
+					for(int n=1; n<=9; n++){ 
+						if(checkIfAllowed(y,x,n)){ 
 							feld[y][x] = n;
-							// solve erneut ausführen um nächstes Feld mit 0 zu berarbeiten
-							if (solve()) {
-								return true;
-							} else {
-								// Feld wird wieder auf 0 gesetzt wenn kein Eintrag möglich und wieder ein Feld
-								// zurückgesprungen werden muss
-								feld[y][x] = 0;
+							//solve erneut ausführen um nächstes Feld mit 0 zu berarbeiten
+							if (solve(false)) { //solveable soll bei rekursivem Aufruf nicht ausgeführt werden
+								return true; 
+							}
+							else {
+							//Feld wird wieder auf 0 gesetzt wenn kein Eintrag möglich und wieder ein Feld zurückgesprungen werden muss
+							feld[y][x] = 0; 
 							}
 						}
-
+						
 					}
+					
 					return false;
 				}
 			}
 		}
-		// wenn alle Felder belegt sind, wird nicht mehr ins if statement gesprungen und
-		// true, also gelöst zurückgegeben
-		return true;
-
+		// wenn alle Felder belegt sind, wird nicht mehr ins if statement gesprungen und true, also gelöst zurückgegeben
+		return true; 
+		
+		
 	}
 }
